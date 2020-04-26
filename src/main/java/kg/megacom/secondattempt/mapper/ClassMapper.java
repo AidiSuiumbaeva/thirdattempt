@@ -24,9 +24,9 @@ public interface ClassMapper {
     Customer customerDtoToCustomer(CustomerDto customerDto);
     CustomerDto customerToCustomerDto(Customer customer);
 
-    @Mapping(source = "statusDto", target="status")
+  //  @Mapping(source = "statusDto", target="status")
     Lot lotDtoToLot(LotDto lotDto);
-    @Mapping(source = "status", target="statusDto")
+    //@Mapping(source = "status", target="statusDto")
     LotDto lotToLotDto(Lot lot);
 
 

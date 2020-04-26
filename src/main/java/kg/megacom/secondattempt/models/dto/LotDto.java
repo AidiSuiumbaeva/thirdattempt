@@ -21,6 +21,6 @@ public class LotDto {
     private double maxPrice;
     @ApiModelProperty(value = "Шаг ")
     private double step;
-    @ApiModelProperty(value = "Статус лота")
-    private StatusDto statusDto;
+   // @ApiModelProperty(value = "Статус лота")
+    //private StatusDto statusDto;
 }

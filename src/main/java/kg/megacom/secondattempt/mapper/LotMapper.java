@@ -13,9 +13,9 @@ import java.util.List;
 @Mapper
 public interface LotMapper {
     LotMapper getInstance= Mappers.getMapper(LotMapper.class);
-    @Mapping(source = "statusDto", target="status")
+    //@Mapping(source = "statusDto", target="status")
     Lot lotDtoToLot(LotDto lotDto);
-    @Mapping(source = "status", target="statusDto")
+    //@Mapping(source = "status", target="statusDto")
     LotDto lotToLotDto(Lot lot);
 
     List<LotDto> lotsToLotDtos(List<Lot> statuses);

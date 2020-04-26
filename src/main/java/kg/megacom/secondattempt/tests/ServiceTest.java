@@ -1,12 +1,11 @@
 package kg.megacom.secondattempt.tests;
 
-import junit.framework.Assert;
-import kg.megacom.secondattempt.mapper.ClassMapper;
-import kg.megacom.secondattempt.mapper.UserMapper;
-import kg.megacom.secondattempt.models.User;
-import kg.megacom.secondattempt.models.dto.UserDto;
-import kg.megacom.secondattempt.repositories.UserRep;
-import kg.megacom.secondattempt.services.UserService;
+import kg.megacom.secondattempt.mapper.LotMapper;
+import kg.megacom.secondattempt.models.Lot;
+import kg.megacom.secondattempt.models.dto.LotDto;
+import kg.megacom.secondattempt.repositories.LotRep;
+import kg.megacom.secondattempt.services.LotService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
+import java.util.Date;
 
 import static org.mockito.ArgumentMatchers.any;
 
@@ -24,34 +24,30 @@ import static org.mockito.ArgumentMatchers.any;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ServiceTest {
-    @Autowired
-    private UserService service;
+  @Autowired
+    private LotService service;
+  private Lot lot;
+  @MockBean
+  LotRep lotRep;
 
-    @MockBean
-    private UserRep userRep;
+  private LotDto lotDto;
 
-    private UserDto userDto;
-    private User user;
+  @Before
+  public void init()
+  {lotDto=new LotDto(){{
+      setName("kjdkdhkdh");
+      setStep(10);
+      setEndDate(new Date());
+  }};
+     lot=LotMapper.getInstance.lotDtoToLot(lotDto);
+     lot.setId(1l);
+  Mockito.when(lotRep.save(any()))
+          .thenReturn(lot);
+  }
+  @Test
+  public void testSave(){
+      lotDto=service.save(lotDto);
 
-
-    @Before
-    public void init(){
-        userDto=new UserDto()
-
-        {{
-            setPassword("jhfjsfh");
-            setName("aidai");
-        }};
-user= UserMapper.getInstance.userDtoToUser(userDto);
-user.setId(1l);
-        Mockito.when(userRep.save(any()))
-                .thenReturn(user);
-    }
-
-
-    @Test
-    public void testSave(){
-       userDto= service.saveUser(userDto);
-        Assert.assertNotNull(userDto.getId());
-    }
+      Assert.assertNotNull(lotDto.getId());
+  }
 }

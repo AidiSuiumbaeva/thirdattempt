@@ -13,14 +13,14 @@ import java.util.Date;
 public class Lot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "lot_id")
+    @Column(name = "id")
     private Long id;
     @NotBlank
     private String name;
     @Min(value=50,message = "Минимальная cтоимость 50")
-    @JsonFormat(pattern = "dd.MM.yyyy")
+   @JsonFormat(pattern = "dd.MM.yyyy")
     private Date startDate;
-    @JsonFormat(pattern = "dd.MM.yyyy")
+  @JsonFormat(pattern = "dd.MM.yyyy")
     @FutureOrPresent
     private Date endDate;
     private double minPrice;
@@ -28,6 +28,7 @@ public class Lot {
     private double maxPrice;
     @Positive
     private double step;
+
     @ManyToOne
     @JoinColumn(name = "status_id")
     private Status status;

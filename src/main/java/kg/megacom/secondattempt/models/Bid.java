@@ -11,11 +11,11 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "bids")
+
 public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "bid_id")
+    @Column(name = "id")
     private Long id;
 @JsonFormat(pattern = "dd.MM.yyyy")
 @FutureOrPresent

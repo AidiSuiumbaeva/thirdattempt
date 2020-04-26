@@ -1,7 +1,10 @@
 package kg.megacom.secondattempt.tests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kg.megacom.secondattempt.models.Lot;
+import kg.megacom.secondattempt.models.dto.LotDto;
 import kg.megacom.secondattempt.models.dto.UserDto;
+import kg.megacom.secondattempt.services.LotService;
 import kg.megacom.secondattempt.services.UserService;
 import org.dom4j.util.UserDataAttribute;
 import org.junit.Before;
@@ -25,17 +28,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ControllerTest {
     @Autowired
     private MockMvc mockMvc;
-    private  UserDto userDto;
+    private LotDto userDto;
     @MockBean
-    private UserService service;
+    private LotService service;
 
     private  ObjectMapper om;
     @Before
     public  void beforeAll(){
-        userDto=new UserDto();
+        userDto=new LotDto();
         userDto.setName("aidi");
-        userDto.setPassword("fjjf");
-        Mockito.when(service.saveUser(userDto))
+
+        Mockito.when(service.save(userDto))
                 .thenReturn(userDto);
         om=new ObjectMapper();
     }
@@ -43,7 +46,7 @@ public class ControllerTest {
     public void testSaveCTRL() throws Exception {
 
 
-        mockMvc.perform(post("/user/save")
+        mockMvc.perform(post("/lot/save")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
         .content(om.writeValueAsString(userDto)))
